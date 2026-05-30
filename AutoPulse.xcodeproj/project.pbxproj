@@ -6,6 +6,12 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		0F436E492FCA489F00985891 /* AutoPulseApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F436E482FCA489F00985891 /* AutoPulseApp.swift */; };
+		0F436E712FCA4FA300985891 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 0F436E702FCA4FA300985891 /* FirebaseAuth */; };
+		0F436E732FCA4FA300985891 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 0F436E722FCA4FA300985891 /* FirebaseFirestore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		0F436E532FCA48A000985891 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -25,6 +31,7 @@
 
 /* Begin PBXFileReference section */
 		0F436E452FCA489F00985891 /* AutoPulse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AutoPulse.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		0F436E482FCA489F00985891 /* AutoPulseApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutoPulseApp.swift; sourceTree = "<group>"; };
 		0F436E522FCA48A000985891 /* AutoPulseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoPulseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0F436E5C2FCA48A000985891 /* AutoPulseUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AutoPulseUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -52,6 +59,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F436E712FCA4FA300985891 /* FirebaseAuth in Frameworks */,
+				0F436E732FCA4FA300985891 /* FirebaseFirestore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -75,10 +84,11 @@
 		0F436E3C2FCA489F00985891 = {
 			isa = PBXGroup;
 			children = (
-				0F436E472FCA489F00985891 /* AutoPulse */,
+				0F436E762FCA53DF00985891 /* APP */,
 				0F436E552FCA48A000985891 /* AutoPulseTests */,
 				0F436E5F2FCA48A000985891 /* AutoPulseUITests */,
 				0F436E462FCA489F00985891 /* Products */,
+				0F436E472FCA489F00985891 /* AutoPulse */,
 			);
 			sourceTree = "<group>";
 		};
@@ -90,6 +100,14 @@
 				0F436E5C2FCA48A000985891 /* AutoPulseUITests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		0F436E762FCA53DF00985891 /* APP */ = {
+			isa = PBXGroup;
+			children = (
+				0F436E482FCA489F00985891 /* AutoPulseApp.swift */,
+			);
+			path = APP;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +130,8 @@
 			);
 			name = AutoPulse;
 			packageProductDependencies = (
+				0F436E702FCA4FA300985891 /* FirebaseAuth */,
+				0F436E722FCA4FA300985891 /* FirebaseFirestore */,
 			);
 			productName = AutoPulse;
 			productReference = 0F436E452FCA489F00985891 /* AutoPulse.app */;
@@ -195,6 +215,9 @@
 			);
 			mainGroup = 0F436E3C2FCA489F00985891;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				0F436E6F2FCA4FA300985891 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0F436E462FCA489F00985891 /* Products */;
 			projectDirPath = "";
@@ -236,6 +259,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F436E492FCA489F00985891 /* AutoPulseApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -570,6 +594,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0F436E6F2FCA4FA300985891 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.14.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0F436E702FCA4FA300985891 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F436E6F2FCA4FA300985891 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		0F436E722FCA4FA300985891 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0F436E6F2FCA4FA300985891 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0F436E3D2FCA489F00985891 /* Project object */;
 }
