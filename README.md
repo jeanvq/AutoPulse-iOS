@@ -50,7 +50,7 @@ AutoPulse/
 
 ## Author
 
-**Jeancarlo Velez**
+**Jeancarlo Ricardo**
 [jeancarlodev.com](https://jeancarlodev.com) · [GitHub](https://github.com/jeanvq)
 
 ---
