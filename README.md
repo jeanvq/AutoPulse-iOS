@@ -5,11 +5,17 @@ A native iOS vehicle health management app built with SwiftUI and Firebase, deve
 ## Screenshots
 
 <p float="left">
-  <img src="screenshots/onboarding.png" width="19%" />
-  <img src="screenshots/login.png" width="19%" />
-  <img src="screenshots/dashboard.png" width="19%" />
-  <img src="screenshots/vehicles.png" width="19%" />
-  <img src="screenshots/fuel.png" width="19%" />
+  <img src="screenshots/Simulator1.png" width="19%" />
+  <img src="screenshots/Simulator2.png" width="19%" />
+  <img src="screenshots/Simulator3.png" width="19%" />
+  <img src="screenshots/Simulator4.png" width="19%" />
+  <img src="screenshots/Simulator5.png" width="19%" />
+</p>
+<p float="left">
+  <img src="screenshots/Simulator6.png" width="19%" />
+  <img src="screenshots/Simulator7.png" width="19%" />
+  <img src="screenshots/Simulator8.png" width="19%" />
+  <img src="screenshots/Simulator9.png" width="19%" />
 </p>
 
 ## Features
