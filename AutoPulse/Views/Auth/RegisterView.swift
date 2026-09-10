@@ -109,14 +109,31 @@ struct RegisterView: View {
     }
 
     func handleRegister() {
-        guard password == confirmPassword else {
-            auth.errorMessage = "Passwords do not match."
+        auth.errorMessage = ""
+        
+        // Validar email
+        guard isValidEmail(email) else {
+            auth.errorMessage = "Please enter a valid email address."
             return
         }
+        
+        // Validar password
         guard password.count >= 6 else {
             auth.errorMessage = "Password must be at least 6 characters."
             return
         }
+        
+        // Validar confirmación
+        guard password == confirmPassword else {
+            auth.errorMessage = "Passwords do not match."
+            return
+        }
+        
         auth.register(email: email, password: password)
+    }
+
+    func isValidEmail(_ email: String) -> Bool {
+        let emailRegex = #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"#
+        return email.range(of: emailRegex, options: .regularExpression) != nil
     }
 }

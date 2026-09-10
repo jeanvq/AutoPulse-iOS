@@ -97,6 +97,15 @@ struct MaintenanceView: View {
                                                     ForEach(vm.records) { record in
                                                         MaintenanceRecordRow(record: record)
                                                             .padding(.horizontal)
+                                                            .swipeActions(edge: .trailing) {
+                                                                Button(role: .destructive) {
+                                                                    if let vehicle = selectedVehicle {
+                                                                        vm.deleteRecord(record, vehicleId: vehicle.id ?? "")
+                                                                    }
+                                                                } label: {
+                                                                    Label("Delete", systemImage: "trash")
+                                                                }
+                                                            }
                                                     }
                                                 }
                                             }

@@ -1,4 +1,5 @@
 import SwiftUI
+import AuthenticationServices
 
 struct LoginView: View {
     @EnvironmentObject var auth: AuthViewModel
@@ -28,7 +29,7 @@ struct LoginView: View {
                         .font(.largeTitle)
                         .fontWeight(.bold)
                         .foregroundStyle(AppTheme.textPrimary)
-                    Text("Smart Vehicle Platform")
+                    Text(String(localized: "Smart Vehicle Platform"))
                         .font(.subheadline)
                         .foregroundStyle(AppTheme.textSecondary)
                 }
@@ -37,9 +38,8 @@ struct LoginView: View {
                 // Form
                 VStack(spacing: 16) {
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("Email")
-                            .font(.caption)
-                            .fontWeight(.medium)
+                        Text(String(localized: "Email"))
+                            .font(.caption).fontWeight(.medium)
                             .foregroundStyle(AppTheme.textSecondary)
                         TextField("", text: $email)
                             .textInputAutocapitalization(.never)
@@ -48,26 +48,19 @@ struct LoginView: View {
                             .padding()
                             .background(AppTheme.backgroundInput)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(AppTheme.textMuted, lineWidth: 1)
-                            )
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 1))
                     }
 
                     VStack(alignment: .leading, spacing: 6) {
-                        Text("Password")
-                            .font(.caption)
-                            .fontWeight(.medium)
+                        Text(String(localized: "Password"))
+                            .font(.caption).fontWeight(.medium)
                             .foregroundStyle(AppTheme.textSecondary)
                         SecureField("", text: $password)
                             .foregroundStyle(AppTheme.textPrimary)
                             .padding()
                             .background(AppTheme.backgroundInput)
                             .clipShape(RoundedRectangle(cornerRadius: 12))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 12)
-                                    .stroke(AppTheme.textMuted, lineWidth: 1)
-                            )
+                            .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 1))
                     }
 
                     if !auth.errorMessage.isEmpty {
@@ -82,7 +75,7 @@ struct LoginView: View {
                             if auth.isLoading {
                                 ProgressView().tint(.white)
                             } else {
-                                Text("Sign In").fontWeight(.semibold)
+                                Text(String(localized: "Sign In")).fontWeight(.semibold)
                             }
                         }
                         .frame(maxWidth: .infinity)
@@ -91,15 +84,38 @@ struct LoginView: View {
                         .foregroundStyle(.white)
                         .clipShape(RoundedRectangle(cornerRadius: 12))
                     }
+
+                    // Divider
+                    HStack {
+                        Rectangle().fill(AppTheme.textMuted).frame(height: 0.5)
+                        Text("or").font(.caption).foregroundStyle(AppTheme.textSecondary)
+                        Rectangle().fill(AppTheme.textMuted).frame(height: 0.5)
+                    }
+
+                    // Sign in with Apple
+                    SignInWithAppleButton(.signIn) { request in
+                        request.requestedScopes = [.fullName, .email]
+                        request.nonce = auth.prepareSignInWithApple()
+                    } onCompletion: { result in
+                        switch result {
+                        case .success(let authorization):
+                            auth.handleSignInWithApple(authorization)
+                        case .failure(let error):
+                            auth.errorMessage = error.localizedDescription
+                        }
+                    }
+                    .signInWithAppleButtonStyle(.white)
+                    .frame(height: 50)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
                 }
                 .padding(.horizontal, 24)
 
                 Spacer()
 
                 HStack {
-                    Text("Don't have an account?")
+                    Text(String(localized: "Don't have an account?"))
                         .foregroundStyle(AppTheme.textSecondary)
-                    Button("Sign Up") { showRegister = true }
+                    Button(String(localized: "Sign Up")) { showRegister = true }
                         .fontWeight(.semibold)
                         .foregroundStyle(AppTheme.accent)
                 }

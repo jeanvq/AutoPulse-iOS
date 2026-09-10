@@ -133,6 +133,15 @@ struct FuelView: View {
                                                     ForEach(vm.records) { record in
                                                         FuelRecordRow(record: record)
                                                             .padding(.horizontal)
+                                                            .swipeActions(edge: .trailing) {
+                                                                Button(role: .destructive) {
+                                                                    if let vehicle = selectedVehicle {
+                                                                        vm.deleteRecord(record, vehicleId: vehicle.id ?? "")
+                                                                    }
+                                                                } label: {
+                                                                    Label("Delete", systemImage: "trash")
+                                                                }
+                                                            }
                                                     }
                                                 }
                                             }
