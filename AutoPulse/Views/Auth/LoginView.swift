@@ -8,86 +8,107 @@ struct LoginView: View {
     @State private var showRegister = false
 
     var body: some View {
-        VStack(spacing: 0) {
+        ZStack {
+            AppTheme.backgroundPrimary.ignoresSafeArea()
 
-            // Header
-            VStack(spacing: 8) {
-                Image(systemName: "car.fill")
-                    .font(.system(size: 52))
-                    .foregroundStyle(.blue)
-                Text("AutoPulse")
-                    .font(.largeTitle)
-                    .fontWeight(.bold)
-                Text("Vehicle Health Manager")
-                    .font(.subheadline)
-                    .foregroundStyle(.secondary)
-            }
-            .padding(.top, 80)
-            .padding(.bottom, 48)
+            VStack(spacing: 0) {
+                Spacer()
 
-            // Form
-            VStack(spacing: 16) {
-                TextField("Email", text: $email)
-                    .textInputAutocapitalization(.never)
-                    .keyboardType(.emailAddress)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-
-                SecureField("Password", text: $password)
-                    .padding()
-                    .background(Color(.systemGray6))
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
-
-                if !auth.errorMessage.isEmpty {
-                    Text(auth.errorMessage)
-                        .font(.caption)
-                        .foregroundStyle(.red)
-                        .frame(maxWidth: .infinity, alignment: .leading)
-                        .padding(.horizontal, 4)
-                }
-
-                Button(action: {
-                    auth.login(email: email, password: password)
-                }) {
-                    Group {
-                        if auth.isLoading {
-                            ProgressView().tint(.white)
-                        } else {
-                            Text("Sign In").fontWeight(.semibold)
-                        }
+                // Logo
+                VStack(spacing: 12) {
+                    ZStack {
+                        Circle()
+                            .fill(AppTheme.accentGlow)
+                            .frame(width: 90, height: 90)
+                        Image(systemName: "car.fill")
+                            .font(.system(size: 40))
+                            .foregroundStyle(AppTheme.accent)
                     }
-                    .frame(maxWidth: .infinity)
-                    .frame(height: 50)
-                    .background(.blue)
-                    .foregroundStyle(.white)
-                    .clipShape(RoundedRectangle(cornerRadius: 12))
+                    Text("AutoPulse")
+                        .font(.largeTitle)
+                        .fontWeight(.bold)
+                        .foregroundStyle(AppTheme.textPrimary)
+                    Text("Smart Vehicle Platform")
+                        .font(.subheadline)
+                        .foregroundStyle(AppTheme.textSecondary)
                 }
-            }
-            .padding(.horizontal, 24)
+                .padding(.bottom, 48)
 
-            Spacer()
+                // Form
+                VStack(spacing: 16) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Email")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(AppTheme.textSecondary)
+                        TextField("", text: $email)
+                            .textInputAutocapitalization(.never)
+                            .keyboardType(.emailAddress)
+                            .foregroundStyle(AppTheme.textPrimary)
+                            .padding()
+                            .background(AppTheme.backgroundInput)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(AppTheme.textMuted, lineWidth: 1)
+                            )
+                    }
 
-            HStack {
-                Text("Don't have an account?")
-                    .foregroundStyle(.secondary)
-                Button("Sign Up") {
-                    showRegister = true
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Password")
+                            .font(.caption)
+                            .fontWeight(.medium)
+                            .foregroundStyle(AppTheme.textSecondary)
+                        SecureField("", text: $password)
+                            .foregroundStyle(AppTheme.textPrimary)
+                            .padding()
+                            .background(AppTheme.backgroundInput)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 12)
+                                    .stroke(AppTheme.textMuted, lineWidth: 1)
+                            )
+                    }
+
+                    if !auth.errorMessage.isEmpty {
+                        Text(auth.errorMessage)
+                            .font(.caption)
+                            .foregroundStyle(AppTheme.danger)
+                            .frame(maxWidth: .infinity, alignment: .leading)
+                    }
+
+                    Button(action: { auth.login(email: email, password: password) }) {
+                        Group {
+                            if auth.isLoading {
+                                ProgressView().tint(.white)
+                            } else {
+                                Text("Sign In").fontWeight(.semibold)
+                            }
+                        }
+                        .frame(maxWidth: .infinity)
+                        .frame(height: 50)
+                        .background(AppTheme.accent)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                    }
                 }
-                .fontWeight(.semibold)
+                .padding(.horizontal, 24)
+
+                Spacer()
+
+                HStack {
+                    Text("Don't have an account?")
+                        .foregroundStyle(AppTheme.textSecondary)
+                    Button("Sign Up") { showRegister = true }
+                        .fontWeight(.semibold)
+                        .foregroundStyle(AppTheme.accent)
+                }
+                .font(.subheadline)
+                .padding(.bottom, 32)
             }
-            .font(.subheadline)
-            .padding(.bottom, 32)
         }
         .sheet(isPresented: $showRegister) {
-            RegisterView()
-                .environmentObject(auth)
+            RegisterView().environmentObject(auth)
         }
     }
-}//
-//  LoginView.swift
-//  AutoPulse
-//
-//  Created by Jeancarlo on 2026-05-29.
-//
-
+}

@@ -1,0 +1,127 @@
+/* Dashboard */
+"Dashboard" = "Panel";
+"Vehicle Health Score" = "Salud del Vehículo";
+"Good" = "Bueno";
+"Excellent" = "Excelente";
+"Fair" = "Regular";
+"Poor" = "Malo";
+"Calculating..." = "Calculando...";
+"No vehicles yet" = "Sin vehículos";
+"Add a vehicle to see your health score" = "Agrega un vehículo para ver su puntaje";
+"Make" = "Marca";
+"Year" = "Año";
+"Mileage" = "Kilometraje";
+
+/* Vehicles */
+"My Vehicles" = "Mis Vehículos";
+"Add Vehicle" = "Agregar Vehículo";
+"Add your first vehicle to get started" = "Agrega tu primer vehículo para comenzar";
+"VIN Lookup" = "Búsqueda por VIN";
+"Vehicle Info" = "Info del Vehículo";
+"Save" = "Guardar";
+"Cancel" = "Cancelar";
+"Edit" = "Editar";
+"Delete Vehicle" = "Eliminar Vehículo";
+"This action cannot be undone." = "Esta acción no se puede deshacer.";
+"Delete Vehicle?" = "¿Eliminar Vehículo?";
+"Delete" = "Eliminar";
+"No vehicles yet" = "Sin vehículos";
+"Details" = "Detalles";
+"Color" = "Color";
+"Type" = "Tipo";
+"VIN" = "VIN";
+"Nickname" = "Apodo";
+"Optional" = "Opcional";
+
+/* Fuel */
+"Fuel" = "Combustible";
+"No fuel records yet" = "Sin registros de combustible";
+"Tap + to log your first fill-up" = "Toca + para tu primera carga";
+"Log Fill-up" = "Registrar Carga";
+"Fill-up Details" = "Detalles de Carga";
+"Total Cost" = "Costo Total";
+"Monthly Spend" = "Gasto Mensual";
+"History" = "Historial";
+"Total Spent" = "Total Gastado";
+"Total Liters" = "Total Litros";
+"Avg $/L" = "Prom $/L";
+"Date" = "Fecha";
+"Liters" = "Litros";
+"Price per liter" = "Precio por litro";
+"Odometer" = "Odómetro";
+"Notes" = "Notas";
+"Select a vehicle above" = "Selecciona un vehículo arriba";
+
+/* Maintenance */
+"Maintenance" = "Mantenimiento";
+"No maintenance records yet" = "Sin registros de mantenimiento";
+"Tap + to log your first service" = "Toca + para tu primer servicio";
+"Log Service" = "Registrar Servicio";
+"Service Details" = "Detalles del Servicio";
+"Service History" = "Historial de Servicio";
+"Services" = "Servicios";
+"Last Service" = "Último Servicio";
+"Service Type" = "Tipo de Servicio";
+"Cost & Mileage" = "Costo y Kilometraje";
+"Shop / Mechanic" = "Taller / Mecánico";
+"Oil Change" = "Cambio de Aceite";
+"Tire Rotation" = "Rotación de Llantas";
+"Brake Service" = "Servicio de Frenos";
+"Battery Replacement" = "Cambio de Batería";
+"Air Filter" = "Filtro de Aire";
+"Car Wash" = "Lavado de Auto";
+"Inspection" = "Inspección";
+
+/* Profile */
+"Profile" = "Perfil";
+"My Account" = "Mi Cuenta";
+"Sign Out" = "Cerrar Sesión";
+"Sign Out?" = "¿Cerrar Sesión?";
+"You will be returned to the login screen." = "Volverás a la pantalla de inicio.";
+"Version" = "Versión";
+"Platform" = "Plataforma";
+"App" = "App";
+
+/* Auth */
+"Sign In" = "Iniciar Sesión";
+"Sign Up" = "Registrarse";
+"Create Account" = "Crear Cuenta";
+"Email" = "Correo";
+"Password" = "Contraseña";
+"Confirm Password" = "Confirmar Contraseña";
+"Don't have an account?" = "¿No tienes cuenta?";
+"Vehicle Health Manager" = "Gestión Vehicular";
+"Smart Vehicle Platform" = "Plataforma Vehicular Inteligente";
+"Join AutoPulse today" = "Únete a AutoPulse hoy";
+
+/* Alerts */
+"Alerts" = "Alertas";
+"No maintenance records logged yet" = "Sin registros de mantenimiento aún";
+"No fuel records logged yet" = "Sin registros de combustible aún";
+"No fuel logged in over 30 days" = "Sin combustible en más de 30 días";
+"No fuel logged in over 60 days" = "Sin combustible en más de 60 días";
+"No maintenance in over 90 days" = "Sin mantenimiento en más de 90 días";
+"No maintenance in over 6 months" = "Sin mantenimiento en más de 6 meses";
+
+/* AI Scanner */
+"AI Scanner" = "Escáner IA";
+"Camera" = "Cámara";
+"Gallery" = "Galería";
+"Analyze Warning Light" = "Analizar Luz de Advertencia";
+"AI Diagnosis" = "Diagnóstico IA";
+"Analyzing..." = "Analizando...";
+"Close" = "Cerrar";
+"Take a photo of your dashboard warning light and get an AI diagnosis" = "Toma una foto de la luz de advertencia y obtén un diagnóstico IA";
+"No image selected" = "Sin imagen seleccionada";
+"Fuel Records" = "Registros de Combustible";
+"Services" = "Servicios";
+"Fuel Spent" = "Combustible Gastado";
+"Check your coolant level and tire pressure." = "Revisa el nivel de refrigerante y la presión de las llantas.";
+"Check your battery and antifreeze levels." = "Revisa la batería y el nivel de anticongelante.";
+"Great driving conditions today!" = "¡Excelentes condiciones para manejar hoy!";
+"Cloudy today. Check your headlights are working." = "Nublado hoy. Verifica que tus luces funcionen.";
+"Rain expected. Check your windshield washer fluid." = "Se esperan lluvias. Revisa el líquido del limpiaparabrisas.";
+"Snow expected. Check your winter tires and wipers." = "Se espera nieve. Verifica las llantas de invierno y limpiaparabrisas.";
+"Rain showers today. Keep your wipers in good condition." = "Lluvia hoy. Mantén tus limpiaparabrisas en buen estado.";
+"Thunderstorm expected. Avoid driving if possible." = "Se esperan tormentas. Evita manejar si es posible.";
+"Check your vehicle before heading out." = "Revisa tu vehículo antes de salir.";

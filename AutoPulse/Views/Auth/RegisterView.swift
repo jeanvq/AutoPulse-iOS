@@ -9,67 +9,100 @@ struct RegisterView: View {
     @State private var confirmPassword = ""
 
     var body: some View {
-        NavigationStack {
-            VStack(spacing: 24) {
-                VStack(spacing: 8) {
-                    Image(systemName: "car.fill")
-                        .font(.system(size: 44))
-                        .foregroundStyle(.blue)
-                    Text("Create Account")
-                        .font(.title)
-                        .fontWeight(.bold)
-                }
-                .padding(.top, 32)
+        ZStack {
+            AppTheme.backgroundPrimary.ignoresSafeArea()
 
-                VStack(spacing: 16) {
-                    TextField("Email", text: $email)
-                        .textInputAutocapitalization(.never)
-                        .keyboardType(.emailAddress)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+            NavigationStack {
+                VStack(spacing: 0) {
+                    Spacer()
 
-                    SecureField("Password", text: $password)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-
-                    SecureField("Confirm Password", text: $confirmPassword)
-                        .padding()
-                        .background(Color(.systemGray6))
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-
-                    if !auth.errorMessage.isEmpty {
-                        Text(auth.errorMessage)
-                            .font(.caption)
-                            .foregroundStyle(.red)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 4)
-                    }
-
-                    Button(action: handleRegister) {
-                        Group {
-                            if auth.isLoading {
-                                ProgressView().tint(.white)
-                            } else {
-                                Text("Create Account").fontWeight(.semibold)
-                            }
+                    VStack(spacing: 12) {
+                        ZStack {
+                            Circle()
+                                .fill(AppTheme.accentGlow)
+                                .frame(width: 80, height: 80)
+                            Image(systemName: "car.fill")
+                                .font(.system(size: 36))
+                                .foregroundStyle(AppTheme.accent)
                         }
-                        .frame(maxWidth: .infinity)
-                        .frame(height: 50)
-                        .background(.blue)
-                        .foregroundStyle(.white)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                        Text("Create Account")
+                            .font(.title)
+                            .fontWeight(.bold)
+                            .foregroundStyle(AppTheme.textPrimary)
+                        Text("Join AutoPulse today")
+                            .font(.subheadline)
+                            .foregroundStyle(AppTheme.textSecondary)
                     }
-                }
-                .padding(.horizontal, 24)
+                    .padding(.bottom, 40)
 
-                Spacer()
-            }
-            .navigationTitle("")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
+                    VStack(spacing: 16) {
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Email")
+                                .font(.caption).fontWeight(.medium)
+                                .foregroundStyle(AppTheme.textSecondary)
+                            TextField("", text: $email)
+                                .textInputAutocapitalization(.never)
+                                .keyboardType(.emailAddress)
+                                .foregroundStyle(AppTheme.textPrimary)
+                                .padding()
+                                .background(AppTheme.backgroundInput)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 1))
+                        }
+
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Password")
+                                .font(.caption).fontWeight(.medium)
+                                .foregroundStyle(AppTheme.textSecondary)
+                            SecureField("", text: $password)
+                                .foregroundStyle(AppTheme.textPrimary)
+                                .padding()
+                                .background(AppTheme.backgroundInput)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 1))
+                        }
+
+                        VStack(alignment: .leading, spacing: 6) {
+                            Text("Confirm Password")
+                                .font(.caption).fontWeight(.medium)
+                                .foregroundStyle(AppTheme.textSecondary)
+                            SecureField("", text: $confirmPassword)
+                                .foregroundStyle(AppTheme.textPrimary)
+                                .padding()
+                                .background(AppTheme.backgroundInput)
+                                .clipShape(RoundedRectangle(cornerRadius: 12))
+                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 1))
+                        }
+
+                        if !auth.errorMessage.isEmpty {
+                            Text(auth.errorMessage)
+                                .font(.caption)
+                                .foregroundStyle(AppTheme.danger)
+                                .frame(maxWidth: .infinity, alignment: .leading)
+                        }
+
+                        Button(action: handleRegister) {
+                            Group {
+                                if auth.isLoading {
+                                    ProgressView().tint(.white)
+                                } else {
+                                    Text("Create Account").fontWeight(.semibold)
+                                }
+                            }
+                            .frame(maxWidth: .infinity)
+                            .frame(height: 50)
+                            .background(AppTheme.accent)
+                            .foregroundStyle(.white)
+                            .clipShape(RoundedRectangle(cornerRadius: 12))
+                        }
+                    }
+                    .padding(.horizontal, 24)
+
+                    Spacer()
+
                     Button("Cancel") { dismiss() }
+                        .foregroundStyle(AppTheme.textSecondary)
+                        .padding(.bottom, 32)
                 }
             }
         }
@@ -86,10 +119,4 @@ struct RegisterView: View {
         }
         auth.register(email: email, password: password)
     }
-}//
-//  RegisterView.swift
-//  AutoPulse
-//
-//  Created by Jeancarlo on 2026-05-29.
-//
-
+}

@@ -1,8 +1,3 @@
-//
-//  ContentView.swift
-//  AutoPulse
-//
-//  Created by Jeancarlo on 2026-05-29.
 import SwiftUI
 import FirebaseAuth
 
@@ -11,10 +6,9 @@ struct ContentView: View {
 
     var body: some View {
         if auth.user != nil {
-            Text("✅ Logged in as \(auth.user?.email ?? "")")
+            MainTabView()
         } else {
             LoginView()
         }
     }
 }
-
