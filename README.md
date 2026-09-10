@@ -1,24 +1,12 @@
 # AutoPulse iOS
 
-A native iOS vehicle health management app built with SwiftUI and Firebase, developed as a capstone project for the Web Development Diploma at triOS College.
+> **A native iOS vehicle health management app** built with SwiftUI and Firebase, developed as a capstone project for the Web Development Diploma at triOS College.
 
-## Screenshots
+![iOS](https://img.shields.io/badge/iOS-17%2B-blue) ![Swift](https://img.shields.io/badge/Swift-5.9-FA7343?logo=swift&logoColor=white) ![SwiftUI](https://img.shields.io/badge/SwiftUI-modern-green)
 
-<p float="left">
-  <img src="screenshots/Simulator1.png" width="19%" />
-  <img src="screenshots/Simulator2.png" width="19%" />
-  <img src="screenshots/Simulator3.png" width="19%" />
-  <img src="screenshots/Simulator4.png" width="19%" />
-  <img src="screenshots/Simulator5.png" width="19%" />
-</p>
-<p float="left">
-  <img src="screenshots/Simulator6.png" width="19%" />
-  <img src="screenshots/Simulator7.png" width="19%" />
-  <img src="screenshots/Simulator8.png" width="19%" />
-  <img src="screenshots/Simulator9.png" width="19%" />
-</p>
+---
 
-## Features
+## 📱 Features
 
 - 🔐 **Authentication** — Email/password + Sign in with Apple via Firebase Auth
 - 🚗 **Vehicle Management** — Add, edit, and delete vehicles with VIN lookup (NHTSA API)
@@ -29,54 +17,131 @@ A native iOS vehicle health management app built with SwiftUI and Firebase, deve
 - 🌤️ **Weather Alerts** — Real-time weather tips based on your location
 - 🌎 **Bilingual** — Full English/Spanish localization (auto-detects iPhone language)
 
-## Tech Stack
+---
+
+## 📸 Screenshots
+
+<div align="center">
+
+### Authentication & Dashboard
+<p>
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.26.34.png" width="18%" alt="Login Screen" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.26.45.png" width="18%" alt="Dashboard" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.26.49.png" width="18%" alt="Health Score" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.26.54.png" width="18%" alt="Weather Alerts" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.26.59.png" width="18%" alt="Vehicle List" />
+</p>
+
+### Features in Action
+<p>
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.27.51.png" width="18%" alt="Fuel Tracking" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.27.54.png" width="18%" alt="Maintenance Log" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.27.57.png" width="18%" alt="AI Scanner" />
+  <img src="screenshots/Simulator Screenshot - iPhone 17 Pro - 2026-09-10 at 19.28.01.png" width="18%" alt="Settings" />
+</p>
+
+</div>
+
+---
+
+## 🛠️ Tech Stack
 
 | Layer | Technology |
 |-------|-----------|
-| UI | SwiftUI (iOS 17+) |
-| Language | Swift 5.9 |
-| Auth | Firebase Authentication |
-| Database | Cloud Firestore |
-| Charts | Swift Charts |
-| Networking | URLSession + NHTSA VIN API |
-| AI | Claude Haiku (Anthropic API) |
-| Weather | Open-Meteo API |
-| Architecture | MVVM |
+| **UI Framework** | SwiftUI (iOS 17+) |
+| **Language** | Swift 5.9 |
+| **Architecture** | MVVM |
+| **Authentication** | Firebase Authentication |
+| **Database** | Cloud Firestore |
+| **Charts** | Swift Charts |
+| **Networking** | URLSession + NHTSA VIN API |
+| **AI Integration** | Claude Haiku (Anthropic API) |
+| **Weather Data** | Open-Meteo API |
 
-## Project Structure
+---
 
+## 📁 Project Structure
+
+```
 AutoPulse/
-├── APP/ # App entry point
+├── APP/                      # App entry point & environment setup
 ├── Views/
-│ ├── Auth/ # Login, Register
-│ ├── Dashboard/ # Health score + weather
-│ ├── Vehicles/ # Vehicle CRUD
-│ ├── Fuel/ # Fuel records + charts
-│ ├── Maintenance/ # Maintenance log
-│ └── AIScannerView # AI warning light scanner
-├── ViewModels/ # ObservableObject classes
-├── Models/ # Data models
-└── Services/ # API, Firestore, Weather, Health Score
+│   ├── Auth/                # Login & Registration
+│   ├── Dashboard/           # Health score + Weather alerts
+│   ├── Vehicles/            # Vehicle CRUD operations
+│   ├── Fuel/                # Fuel records & Charts
+│   ├── Maintenance/         # Service history log
+│   └── AIScannerView/       # AI warning light scanner
+├── ViewModels/              # ObservableObject classes
+├── Models/                  # Data models
+└── Services/                # API, Firestore, Weather, Health Score
+```
 
+---
 
-## Setup
+## 🚀 Getting Started
 
-1. Clone the repo
-2. Open `AutoPulse.xcodeproj` in Xcode 15+
-3. Add your own `GoogleService-Info.plist` from Firebase Console
-4. Add `ANTHROPIC_API_KEY` in Xcode → Product → Scheme → Edit Scheme → Environment Variables
-5. Build and run on simulator (iOS 17+)
+### Prerequisites
+- Xcode 15+
+- iOS 17+
+- CocoaPods (if applicable)
 
-> ⚠️ `GoogleService-Info.plist` is not included in the repo for security reasons.
+### Installation
 
-## Documents
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/jeanvq/AutoPulse-iOS.git
+   cd AutoPulse-iOS
+   ```
+
+2. **Open in Xcode**
+   ```bash
+   open AutoPulse.xcodeproj
+   ```
+
+3. **Configure Firebase**
+   - Download `GoogleService-Info.plist` from [Firebase Console](https://console.firebase.google.com)
+   - Add it to the Xcode project (⚠️ not included in repo for security)
+
+4. **Set Anthropic API Key**
+   - Go to **Xcode → Product → Scheme → Edit Scheme**
+   - Navigate to **Run → Arguments**
+   - Add environment variable: `ANTHROPIC_API_KEY` with your API key
+
+5. **Build & Run**
+   - Select an iOS 17+ simulator or device
+   - Press `Cmd + R` to build and run
+
+> ⚠️ **Security Note:** `GoogleService-Info.plist` and API keys are not included in the repository for security reasons.
+
+---
+
+## 📚 Documentation
 
 - [Capstone Proposal](docs/AutoPulse_iOS_Capstone_Proposal.docx)
 
-## Author
+---
 
-**Jeancarlo Ricardo Velásquez**  
-[jeancarlodev.com](https://jeancarlodev.com) · [GitHub](https://github.com/jeanvq) · [LinkedIn](https://linkedin.com/in/jeancarlo-ricardo-392b4a365)
+## 👨‍💻 About the Developer
+
+**Jeancarlo Ricardo Velásquez**
+
+- 🌐 Portfolio: [jeancarlodev.com](https://jeancarlodev.com)
+- 💻 GitHub: [@jeanvq](https://github.com/jeanvq)
+- 🔗 LinkedIn: [jeancarlo-ricardo-392b4a365](https://linkedin.com/in/jeancarlo-ricardo-392b4a365)
 
 ---
-*triOS College — Web Development Diploma — iOS Development Capstone — 2026*
+
+## 📄 License
+
+This project was developed as a capstone project for the **Web Development Diploma** at **triOS College** (2026).
+
+---
+
+<div align="center">
+
+**Built with ❤️ | iOS Development Capstone Project**
+
+*triOS College — Web Development Diploma*
+
+</div>
