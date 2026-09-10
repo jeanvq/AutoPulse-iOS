@@ -99,7 +99,7 @@ struct AddVehicleView: View {
                         make = fetchedMake.capitalized
                         model = fetchedModel.capitalized
                         year = fetchedYear
-                        vehicleType = fetchedType.isEmpty ? "Car" : fetchedType.capitalized
+                        vehicleType = mapVehicleType(fetchedType)
                         vinMessage = "✅ Vehicle found!"
                     } else {
                         vinMessage = "❌ VIN not recognized"
@@ -121,5 +121,15 @@ struct AddVehicleView: View {
             isSaving = false
             if success { dismiss() }
         }
+        
+    }
+    func mapVehicleType(_ nhtsaType: String) -> String {
+        let type = nhtsaType.lowercased()
+        if type.contains("truck") || type.contains("pickup") { return "Truck" }
+        if type.contains("suv") || type.contains("multipurpose") || type.contains("mpv") { return "SUV" }
+        if type.contains("van") || type.contains("minivan") { return "Van" }
+        if type.contains("hatch") { return "Hatch" }
+        if type.contains("passenger") || type.contains("sedan") || type.contains("car") { return "Car" }
+        return "Car"
     }
 }
