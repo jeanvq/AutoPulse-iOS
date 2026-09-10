@@ -130,7 +130,17 @@ struct MaintenanceView: View {
                         AddMaintenanceRecordView(vm: vm, vehicle: vehicle)
                     }
                 }
-                .onAppear { vehiclesVm.fetchVehicles() }
+                .onAppear {
+                    vehiclesVm.fetchVehicles()
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.8) {
+                        if self.selectedVehicle == nil, let first = self.vehiclesVm.vehicles.first {
+                            self.selectedVehicle = first
+                            if let id = first.id {
+                                vm.fetchRecords(vehicleId: id)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
