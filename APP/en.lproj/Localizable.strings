@@ -1,0 +1,86 @@
+/* Dashboard */
+"Dashboard" = "Dashboard";
+"Vehicle Health Score" = "Vehicle Health Score";
+"Good" = "Good";
+"Excellent" = "Excellent";
+"Fair" = "Fair";
+"Poor" = "Poor";
+"Calculating..." = "Calculating...";
+"No vehicles yet" = "No vehicles yet";
+"Add a vehicle to see your health score" = "Add a vehicle to see your health score";
+
+/* Vehicles */
+"My Vehicles" = "My Vehicles";
+"Add Vehicle" = "Add Vehicle";
+"Add your first vehicle to get started" = "Add your first vehicle to get started";
+"VIN Lookup" = "VIN Lookup";
+"Vehicle Info" = "Vehicle Info";
+"Save" = "Save";
+"Cancel" = "Cancel";
+"Edit" = "Edit";
+"Delete Vehicle" = "Delete Vehicle";
+"This action cannot be undone." = "This action cannot be undone.";
+"Delete Vehicle?" = "Delete Vehicle?";
+"Delete" = "Delete";
+
+/* Fuel */
+"Fuel" = "Fuel";
+"No fuel records yet" = "No fuel records yet";
+"Tap + to log your first fill-up" = "Tap + to log your first fill-up";
+"Log Fill-up" = "Log Fill-up";
+"Fill-up Details" = "Fill-up Details";
+"Total Cost" = "Total Cost";
+"Monthly Spend" = "Monthly Spend";
+"History" = "History";
+"Total Spent" = "Total Spent";
+"Total Liters" = "Total Liters";
+"Avg $/L" = "Avg $/L";
+
+/* Maintenance */
+"Maintenance" = "Maintenance";
+"No maintenance records yet" = "No maintenance records yet";
+"Tap + to log your first service" = "Tap + to log your first service";
+"Log Service" = "Log Service";
+"Service Details" = "Service Details";
+"Service History" = "Service History";
+"Services" = "Services";
+"Last Service" = "Last Service";
+
+/* Profile */
+"Profile" = "Profile";
+"My Account" = "My Account";
+"Sign Out" = "Sign Out";
+"Sign Out?" = "Sign Out?";
+"You will be returned to the login screen." = "You will be returned to the login screen.";
+"Version" = "Version";
+"Platform" = "Platform";
+
+/* Auth */
+"Sign In" = "Sign In";
+"Sign Up" = "Sign Up";
+"Create Account" = "Create Account";
+"Email" = "Email";
+"Password" = "Password";
+"Confirm Password" = "Confirm Password";
+"Don't have an account?" = "Don't have an account?";
+"Vehicle Health Manager" = "Vehicle Health Manager";
+"Smart Vehicle Platform" = "Smart Vehicle Platform";
+"Join AutoPulse today" = "Join AutoPulse today";
+
+/* Alerts */
+"Alerts" = "Alerts";
+"No maintenance records logged yet" = "No maintenance records logged yet";
+"No fuel records logged yet" = "No fuel records logged yet";
+"No fuel logged in over 30 days" = "No fuel logged in over 30 days";
+"No fuel logged in over 60 days" = "No fuel logged in over 60 days";
+"No maintenance in over 90 days" = "No maintenance in over 90 days";
+"No maintenance in over 6 months" = "No maintenance in over 6 months";
+
+/* AI Scanner */
+"AI Scanner" = "AI Scanner";
+"Camera" = "Camera";
+"Gallery" = "Gallery";
+"Analyze Warning Light" = "Analyze Warning Light";
+"AI Diagnosis" = "AI Diagnosis";
+"Analyzing..." = "Analyzing...";
+"Close" = "Close";
