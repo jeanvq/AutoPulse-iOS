@@ -96,12 +96,17 @@ struct FuelView: View {
                                                         .font(.headline)
                                                         .foregroundStyle(AppTheme.textPrimary)
 
-                                                    Chart(vm.records.prefix(10)) { record in
+                                                    Chart(vm.records.prefix(10).reversed()) { record in
                                                         BarMark(
-                                                            x: .value("Date", record.date, unit: .month),
+                                                            x: .value("Date", record.date.formatted(.dateTime.month(.abbreviated).day())),
                                                             y: .value("Cost", record.totalCost)
                                                         )
                                                         .foregroundStyle(AppTheme.accent.gradient)
+                                                        .annotation(position: .top) {
+                                                            Text(String(format: "$%.0f", record.totalCost))
+                                                                .font(.caption2)
+                                                                .foregroundStyle(AppTheme.textSecondary)
+                                                        }
                                                     }
                                                     .frame(height: 180)
                                                     .chartXAxis {
