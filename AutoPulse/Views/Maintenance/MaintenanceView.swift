@@ -75,9 +75,9 @@ struct MaintenanceView: View {
                                             Spacer()
                                         }
                                     } else {
-                                        ScrollView {
-                                            VStack(spacing: 16) {
-                                                // Stats
+                                        List {
+                                            // Stats
+                                            Section {
                                                 HStack(spacing: 12) {
                                                     DarkStatCard(title: "Total Spent", value: String(format: "$%.2f", vm.totalSpent), icon: "dollarsign.circle.fill", color: AppTheme.success)
                                                     DarkStatCard(title: "Services", value: "\(vm.records.count)", icon: "wrench.fill", color: AppTheme.warning)
@@ -85,32 +85,38 @@ struct MaintenanceView: View {
                                                         DarkStatCard(title: "Last Service", value: last.date.formatted(.dateTime.month().day()), icon: "calendar", color: AppTheme.accent)
                                                     }
                                                 }
-                                                .padding(.horizontal)
-
-                                                // Records list
-                                                VStack(alignment: .leading, spacing: 8) {
-                                                    Text("Service History")
-                                                        .font(.headline)
-                                                        .foregroundStyle(AppTheme.textPrimary)
-                                                        .padding(.horizontal)
-
-                                                    ForEach(vm.records) { record in
-                                                        MaintenanceRecordRow(record: record)
-                                                            .padding(.horizontal)
-                                                            .swipeActions(edge: .trailing) {
-                                                                Button(role: .destructive) {
-                                                                    if let vehicle = selectedVehicle {
-                                                                        vm.deleteRecord(record, vehicleId: vehicle.id ?? "")
-                                                                    }
-                                                                } label: {
-                                                                    Label("Delete", systemImage: "trash")
-                                                                }
-                                                            }
-                                                    }
-                                                }
                                             }
-                                            .padding(.vertical)
+                                            .listRowBackground(AppTheme.backgroundPrimary)
+                                            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                            .listRowSeparator(.hidden)
+
+                                            // History header
+                                            Section {
+                                                Text("Service History")
+                                                    .font(.headline)
+                                                    .foregroundStyle(AppTheme.textPrimary)
+                                            }
+                                            .listRowBackground(AppTheme.backgroundPrimary)
+                                            .listRowSeparator(.hidden)
+
+                                            ForEach(vm.records) { record in
+                                                MaintenanceRecordRow(record: record)
+                                                    .listRowBackground(AppTheme.backgroundPrimary)
+                                                    .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                                                    .listRowSeparator(.hidden)
+                                                    .swipeActions(edge: .trailing) {
+                                                        Button(role: .destructive) {
+                                                            if let vehicle = selectedVehicle {
+                                                                vm.deleteRecord(record, vehicleId: vehicle.id ?? "")
+                                                            }
+                                                        } label: {
+                                                            Label("Delete", systemImage: "trash")
+                                                        }
+                                                    }
+                                            }
                                         }
+                                        .listStyle(.plain)
+                                        .scrollContentBackground(.hidden)
                                     }
                                 } else {
                                     Spacer()

@@ -76,22 +76,25 @@ struct FuelView: View {
                                             Spacer()
                                         }
                                     } else {
-                                        ScrollView {
-                                            VStack(spacing: 16) {
-                                                // Stats
+                                        List {
+                                            // Stats
+                                            Section {
                                                 HStack(spacing: 12) {
                                                     DarkStatCard(title: "Total Spent", value: String(format: "$%.2f", vm.totalSpent), icon: "dollarsign.circle.fill", color: AppTheme.success)
                                                     DarkStatCard(title: "Total Liters", value: String(format: "%.1fL", vm.totalLiters), icon: "fuelpump.fill", color: AppTheme.warning)
                                                     DarkStatCard(title: "Avg $/L", value: String(format: "$%.2f", vm.averageCostPerLiter), icon: "chart.line.uptrend.xyaxis", color: AppTheme.accent)
                                                 }
-                                                .padding(.horizontal)
+                                            }
+                                            .listRowBackground(AppTheme.backgroundPrimary)
+                                            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                            .listRowSeparator(.hidden)
 
-                                                // Chart
+                                            // Chart
+                                            Section {
                                                 VStack(alignment: .leading, spacing: 8) {
                                                     Text("Monthly Spend")
                                                         .font(.headline)
                                                         .foregroundStyle(AppTheme.textPrimary)
-                                                        .padding(.horizontal)
 
                                                     Chart(vm.records.prefix(10)) { record in
                                                         BarMark(
@@ -101,7 +104,6 @@ struct FuelView: View {
                                                         .foregroundStyle(AppTheme.accent.gradient)
                                                     }
                                                     .frame(height: 180)
-                                                    .padding(.horizontal)
                                                     .chartXAxis {
                                                         AxisMarks(values: .stride(by: .month)) { _ in
                                                             AxisValueLabel(format: .dateTime.month(.abbreviated))
@@ -117,36 +119,39 @@ struct FuelView: View {
                                                         }
                                                     }
                                                 }
-                                                .padding(.vertical, 12)
-                                                .background(AppTheme.backgroundCard)
-                                                .clipShape(RoundedRectangle(cornerRadius: 12))
-                                                .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 0.5))
-                                                .padding(.horizontal)
-
-                                                // Records list
-                                                VStack(alignment: .leading, spacing: 8) {
-                                                    Text("History")
-                                                        .font(.headline)
-                                                        .foregroundStyle(AppTheme.textPrimary)
-                                                        .padding(.horizontal)
-
-                                                    ForEach(vm.records) { record in
-                                                        FuelRecordRow(record: record)
-                                                            .padding(.horizontal)
-                                                            .swipeActions(edge: .trailing) {
-                                                                Button(role: .destructive) {
-                                                                    if let vehicle = selectedVehicle {
-                                                                        vm.deleteRecord(record, vehicleId: vehicle.id ?? "")
-                                                                    }
-                                                                } label: {
-                                                                    Label("Delete", systemImage: "trash")
-                                                                }
-                                                            }
-                                                    }
-                                                }
+                                                .padding(.vertical, 8)
                                             }
-                                            .padding(.vertical)
+                                            .listRowBackground(AppTheme.backgroundCard)
+                                            .listRowInsets(EdgeInsets(top: 8, leading: 16, bottom: 8, trailing: 16))
+                                            .listRowSeparator(.hidden)
+
+                                            // History
+                                            Section {
+                                                Text("History")
+                                                    .font(.headline)
+                                                    .foregroundStyle(AppTheme.textPrimary)
+                                            }
+                                            .listRowBackground(AppTheme.backgroundPrimary)
+                                            .listRowSeparator(.hidden)
+
+                                            ForEach(vm.records) { record in
+                                                FuelRecordRow(record: record)
+                                                    .listRowBackground(AppTheme.backgroundPrimary)
+                                                    .listRowInsets(EdgeInsets(top: 4, leading: 16, bottom: 4, trailing: 16))
+                                                    .listRowSeparator(.hidden)
+                                                    .swipeActions(edge: .trailing) {
+                                                        Button(role: .destructive) {
+                                                            if let vehicle = selectedVehicle {
+                                                                vm.deleteRecord(record, vehicleId: vehicle.id ?? "")
+                                                            }
+                                                        } label: {
+                                                            Label("Delete", systemImage: "trash")
+                                                        }
+                                                    }
+                                            }
                                         }
+                                        .listStyle(.plain)
+                                        .scrollContentBackground(.hidden)
                                     }
                                 } else {
                                     Spacer()
