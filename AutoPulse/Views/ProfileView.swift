@@ -4,6 +4,7 @@ import FirebaseAuth
 struct ProfileView: View {
     @EnvironmentObject var auth: AuthViewModel
     @State private var showLogoutAlert = false
+    @State private var showDeleteAlert = false
 
     var userEmail: String {
         Auth.auth().currentUser?.email ?? "Unknown"
@@ -56,6 +57,13 @@ struct ProfileView: View {
                                     Text("Sign Out")
                                 }
                             }
+
+                            Button(role: .destructive, action: { showDeleteAlert = true }) {
+                                HStack {
+                                    Image(systemName: "trash.fill")
+                                    Text("Delete Account")
+                                }
+                            }
                         }
                         .listRowBackground(AppTheme.backgroundCard)
                     }
@@ -70,6 +78,14 @@ struct ProfileView: View {
                     Button("Cancel", role: .cancel) {}
                 } message: {
                     Text("You will be returned to the login screen.")
+                }
+                .alert("Delete Account?", isPresented: $showDeleteAlert) {
+                    Button("Delete", role: .destructive) {
+                        auth.deleteAccount { _ in }
+                    }
+                    Button("Cancel", role: .cancel) {}
+                } message: {
+                    Text("This will permanently delete your account and all your data. This action cannot be undone.")
                 }
             }
         }

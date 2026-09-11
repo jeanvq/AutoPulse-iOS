@@ -115,3 +115,6 @@
 "Fuel Records" = "Fuel Records";
 "Services" = "Services";
 "Fuel Spent" = "Fuel Spent";
+"Delete Account" = "Delete Account";
+"Delete Account?" = "Delete Account?";
+"This will permanently delete your account and all your data. This action cannot be undone." = "This will permanently delete your account and all your data. This action cannot be undone.";

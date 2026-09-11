@@ -1,5 +1,6 @@
 import SwiftUI
 import FirebaseAuth
+import FirebaseFirestore
 import Combine
 import AuthenticationServices
 import CryptoKit
@@ -8,16 +9,15 @@ class AuthViewModel: ObservableObject {
     @Published var user: User? = nil
     @Published var isLoading = false
     @Published var errorMessage = ""
-    
+
     init() {
-        // Detecta si ya hay sesión activa
         self.user = Auth.auth().currentUser
     }
-    
+
     func login(email: String, password: String) {
         isLoading = true
         errorMessage = ""
-        
+
         Auth.auth().signIn(withEmail: email, password: password) { result, error in
             DispatchQueue.main.async {
                 self.isLoading = false
@@ -29,11 +29,11 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
-    
+
     func register(email: String, password: String) {
         isLoading = true
         errorMessage = ""
-        
+
         Auth.auth().createUser(withEmail: email, password: password) { result, error in
             DispatchQueue.main.async {
                 self.isLoading = false
@@ -45,11 +45,43 @@ class AuthViewModel: ObservableObject {
             }
         }
     }
-    
+
     func logout() {
         try? Auth.auth().signOut()
         self.user = nil
     }
+
+    func deleteAccount(completion: @escaping (Bool) -> Void) {
+        guard let user = Auth.auth().currentUser,
+              let uid = Auth.auth().currentUser?.uid else {
+            completion(false)
+            return
+        }
+
+        let db = Firestore.firestore()
+        db.collection("users").document(uid).delete { error in
+            if let error = error {
+                DispatchQueue.main.async {
+                    self.errorMessage = error.localizedDescription
+                    completion(false)
+                }
+                return
+            }
+
+            user.delete { error in
+                DispatchQueue.main.async {
+                    if let error = error {
+                        self.errorMessage = error.localizedDescription
+                        completion(false)
+                    } else {
+                        self.user = nil
+                        completion(true)
+                    }
+                }
+            }
+        }
+    }
+
     // MARK: - Sign in with Apple
     private var currentNonce: String?
 
@@ -95,10 +127,4 @@ class AuthViewModel: ObservableObject {
         currentNonce = nonce
         return sha256(nonce)
     }
-    
-}////  AuthViewModel.swift
-//  AutoPulse
-//
-//  Created by Jeancarlo on 2026-05-29.
-//
-
+}
