@@ -11,6 +11,20 @@
 "Make" = "Marca";
 "Year" = "Año";
 "Mileage" = "Kilometraje";
+"Recent fuel record logged" = "Registro de combustible reciente";
+"No recent fuel records" = "Sin registros recientes de combustible";
+"Maintenance up to date" = "Mantenimiento al día";
+"1 overdue maintenance" = "1 mantenimiento vencido";
+"%d overdue maintenance" = "%d mantenimientos vencidos";
+"No overdue maintenance" = "Sin mantenimientos vencidos";
+"Excellent Condition" = "Condición Excelente";
+"Good Condition" = "Buena Condición";
+"Fair Condition" = "Condición Regular";
+"Poor Condition" = "Condición Mala";
+"Your vehicle is in excellent condition!" = "¡Tu vehículo está en excelente condición!";
+"Your vehicle is doing well but some attention is needed." = "Tu vehículo está bien, pero necesita algo de atención.";
+"Your vehicle needs some attention soon." = "Tu vehículo necesitará atención pronto.";
+"Your vehicle needs immediate attention." = "Tu vehículo necesita atención inmediata.";
 
 /* Vehicles */
 "My Vehicles" = "Mis Vehículos";

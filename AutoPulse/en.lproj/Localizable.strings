@@ -11,6 +11,20 @@
 "Make" = "Make";
 "Year" = "Year";
 "Mileage" = "Mileage";
+"Recent fuel record logged" = "Recent fuel record logged";
+"No recent fuel records" = "No recent fuel records";
+"Maintenance up to date" = "Maintenance up to date";
+"1 overdue maintenance" = "1 overdue maintenance";
+"%d overdue maintenance" = "%d overdue maintenance";
+"No overdue maintenance" = "No overdue maintenance";
+"Excellent Condition" = "Excellent Condition";
+"Good Condition" = "Good Condition";
+"Fair Condition" = "Fair Condition";
+"Poor Condition" = "Poor Condition";
+"Your vehicle is in excellent condition!" = "Your vehicle is in excellent condition!";
+"Your vehicle is doing well but some attention is needed." = "Your vehicle is doing well but some attention is needed.";
+"Your vehicle needs some attention soon." = "Your vehicle needs some attention soon.";
+"Your vehicle needs immediate attention." = "Your vehicle needs immediate attention.";
 
 /* Vehicles */
 "My Vehicles" = "My Vehicles";
