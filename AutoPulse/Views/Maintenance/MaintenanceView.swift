@@ -164,24 +164,82 @@ struct MaintenanceView: View {
 struct MaintenanceRecordRow: View {
     let record: MaintenanceRecord
 
+    var isOverdue: Bool {
+        guard let nextDate = record.nextServiceDate, record.reminderSet else { return false }
+        return nextDate < Date()
+    }
+
+    var isDueSoon: Bool {
+        guard let nextDate = record.nextServiceDate, record.reminderSet else { return false }
+        let days = Calendar.current.dateComponents([.day], from: Date(), to: nextDate).day ?? 0
+        return days <= 7 && nextDate >= Date()
+    }
+
     var body: some View {
         HStack(spacing: 14) {
             ZStack {
                 RoundedRectangle(cornerRadius: 10)
-                    .fill(AppTheme.warning.opacity(0.15))
+                    .fill(isOverdue ? AppTheme.danger.opacity(0.15) : AppTheme.warning.opacity(0.15))
                     .frame(width: 48, height: 48)
                 Image(systemName: serviceIcon)
-                    .foregroundStyle(AppTheme.warning)
+                    .foregroundStyle(isOverdue ? AppTheme.danger : AppTheme.warning)
                     .font(.title3)
+
+                // Badge
+                if isOverdue || isDueSoon {
+                    VStack {
+                        HStack {
+                            Spacer()
+                            Circle()
+                                .fill(isOverdue ? AppTheme.danger : AppTheme.warning)
+                                .frame(width: 10, height: 10)
+                        }
+                        Spacer()
+                    }
+                    .frame(width: 48, height: 48)
+                }
             }
 
             VStack(alignment: .leading, spacing: 4) {
-                Text(record.serviceType)
-                    .font(.subheadline).fontWeight(.semibold)
-                    .foregroundStyle(AppTheme.textPrimary)
+                HStack {
+                    Text(record.serviceType)
+                        .font(.subheadline).fontWeight(.semibold)
+                        .foregroundStyle(AppTheme.textPrimary)
+
+                    if isOverdue {
+                        Text("OVERDUE")
+                            .font(.caption2).fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(AppTheme.danger)
+                            .clipShape(Capsule())
+                    } else if isDueSoon {
+                        Text("DUE SOON")
+                            .font(.caption2).fontWeight(.bold)
+                            .foregroundStyle(.white)
+                            .padding(.horizontal, 6)
+                            .padding(.vertical, 2)
+                            .background(AppTheme.warning)
+                            .clipShape(Capsule())
+                    }
+                }
+
                 Text(record.date.formatted(date: .abbreviated, time: .omitted))
                     .font(.caption)
                     .foregroundStyle(AppTheme.textSecondary)
+
+                if let nextDate = record.nextServiceDate, record.reminderSet {
+                    HStack(spacing: 4) {
+                        Image(systemName: "bell.fill")
+                            .font(.caption2)
+                            .foregroundStyle(isOverdue ? AppTheme.danger : AppTheme.warning)
+                        Text("Next: \(nextDate.formatted(date: .abbreviated, time: .omitted))")
+                            .font(.caption)
+                            .foregroundStyle(isOverdue ? AppTheme.danger : AppTheme.warning)
+                    }
+                }
+
                 if !record.shop.isEmpty {
                     Text(record.shop)
                         .font(.caption)
@@ -201,9 +259,12 @@ struct MaintenanceRecordRow: View {
             }
         }
         .padding()
-        .background(AppTheme.backgroundCard)
+        .background(isOverdue ? AppTheme.danger.opacity(0.05) : AppTheme.backgroundCard)
         .clipShape(RoundedRectangle(cornerRadius: 12))
-        .overlay(RoundedRectangle(cornerRadius: 12).stroke(AppTheme.textMuted, lineWidth: 0.5))
+        .overlay(
+            RoundedRectangle(cornerRadius: 12)
+                .stroke(isOverdue ? AppTheme.danger.opacity(0.4) : AppTheme.textMuted, lineWidth: isOverdue ? 1 : 0.5)
+        )
     }
 
     var serviceIcon: String {

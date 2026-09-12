@@ -8,11 +8,12 @@ struct AutoPulseApp: App {
     init() {
         FirebaseApp.configure()
         configureAppearance()
+        NotificationService.shared.requestPermission()
     }
 
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            SplashScreenView()
                 .environmentObject(auth)
                 .preferredColorScheme(.dark)
         }

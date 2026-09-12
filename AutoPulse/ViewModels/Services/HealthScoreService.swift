@@ -45,10 +45,26 @@ class HealthScoreService {
             }
         }
 
+        // Check overdue scheduled maintenance
+        let now = Date()
+        for record in maintenanceRecords {
+            if let nextDate = record.nextServiceDate, record.reminderSet {
+                if nextDate < now {
+                    let daysOverdue = Calendar.current.dateComponents([.day], from: nextDate, to: now).day ?? 0
+                    score -= min(20, daysOverdue / 7 * 5)
+                    alerts.append("⚠️ \(record.serviceType) is overdue by \(daysOverdue) days")
+                } else {
+                    let daysUntil = Calendar.current.dateComponents([.day], from: now, to: nextDate).day ?? 0
+                    if daysUntil <= 7 {
+                        alerts.append("📅 \(record.serviceType) due in \(daysUntil) days")
+                    }
+                }
+            }
+        }
+
         // Clamp score
         score = max(0, min(100, score))
 
-        // Label and color
         let label: String
         let color: String
 

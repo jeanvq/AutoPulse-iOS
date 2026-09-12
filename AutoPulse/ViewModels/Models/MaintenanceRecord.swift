@@ -10,6 +10,8 @@ struct MaintenanceRecord: Identifiable, Codable, Equatable {
     var cost: Double
     var shop: String
     var notes: String
+    var nextServiceDate: Date?
+    var reminderSet: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -20,5 +22,7 @@ struct MaintenanceRecord: Identifiable, Codable, Equatable {
         case cost
         case shop
         case notes
+        case nextServiceDate = "next_service_date"
+        case reminderSet = "reminder_set"
     }
 }
