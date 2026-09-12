@@ -143,8 +143,10 @@ struct AddMaintenanceRecordView: View {
                     )
                 }
                 self.isSaving = false
+                HapticService.shared.success()
                 self.dismiss()
             } else {
+                HapticService.shared.error()
                 self.isSaving = false
             }
         }

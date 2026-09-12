@@ -70,8 +70,10 @@ struct LoginView: View {
                             .frame(maxWidth: .infinity, alignment: .leading)
                     }
 
-                    Button(action: { auth.login(email: email, password: password) }) {
-                        Group {
+                    Button(action: {
+                        HapticService.shared.medium()
+                        auth.login(email: email, password: password)
+                    }) {                        Group {
                             if auth.isLoading {
                                 ProgressView().tint(.white)
                             } else {

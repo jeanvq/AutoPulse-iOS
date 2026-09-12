@@ -4,38 +4,38 @@ struct AddFuelRecordView: View {
     @ObservedObject var vm: FuelViewModel
     let vehicle: Vehicle
     @Environment(\.dismiss) var dismiss
-
+    
     @State private var date = Date()
     @State private var liters = ""
     @State private var costPerLiter = ""
     @State private var odometer = ""
     @State private var notes = ""
     @State private var isSaving = false
-
+    
     var totalCost: Double {
         (Double(liters) ?? 0) * (Double(costPerLiter) ?? 0)
     }
-
+    
     var body: some View {
         NavigationStack {
             Form {
                 Section("Fill-up Details") {
                     DatePicker("Date", selection: $date, displayedComponents: .date)
-
+                    
                     HStack {
                         TextField("Liters", text: $liters)
                             .keyboardType(.decimalPad)
                         Text("L")
                             .foregroundStyle(.secondary)
                     }
-
+                    
                     HStack {
                         TextField("Price per liter", text: $costPerLiter)
                             .keyboardType(.decimalPad)
                         Text("$/L")
                             .foregroundStyle(.secondary)
                     }
-
+                    
                     HStack {
                         Text("Total Cost")
                         Spacer()
@@ -44,7 +44,7 @@ struct AddFuelRecordView: View {
                             .foregroundStyle(.green)
                     }
                 }
-
+                
                 Section("Optional") {
                     HStack {
                         TextField("Odometer", text: $odometer)
@@ -74,11 +74,11 @@ struct AddFuelRecordView: View {
             }
         }
     }
-
+    
     func save() {
         guard let vehicleId = vehicle.id else { return }
         isSaving = true
-
+        
         let record = FuelRecord(
             vehicleId: vehicleId,
             date: date,
@@ -88,10 +88,15 @@ struct AddFuelRecordView: View {
             odometer: Int(odometer) ?? 0,
             notes: notes
         )
-
+        
         vm.addRecord(record, vehicleId: vehicleId) { success in
             isSaving = false
-            if success { dismiss() }
+            if success {
+                HapticService.shared.success()
+                dismiss()
+            } else {
+                HapticService.shared.error()
+            }
         }
     }
 }

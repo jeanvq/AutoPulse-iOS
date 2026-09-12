@@ -119,9 +119,13 @@ struct AddVehicleView: View {
         )
         vm.addVehicle(vehicle) { success in
             isSaving = false
-            if success { dismiss() }
+            if success {
+                HapticService.shared.success()
+                dismiss()
+            } else {
+                HapticService.shared.error()
+            }
         }
-        
     }
     func mapVehicleType(_ nhtsaType: String) -> String {
         let type = nhtsaType.lowercased()
